@@ -16,7 +16,7 @@ const getApiInfo = async () => {
             weight: el.weight,
             height: el.height,
             life_span: el.life_span,
-            temperament: el.temperament,
+            temperaments: el.temperament,
             img: el.image
         };
     });
@@ -90,7 +90,7 @@ router.post('/', async (req, res) => {
                 createdRace.addTemperament(temperDb)
             })
             
-            res.status(201).send("Personaje creado con exito");
+            res.status(201).send("Raza creada con exito");
         }
     } catch (error) {
         res.status(404).send(error.message);
