@@ -42,10 +42,6 @@ const getAllRaces = async () => {
     return infoTotal;
 }
 
-// const postRace = async (raceInfo) => {
-//     return await Race.create(raceInfo);
-// }
-
 router.get('/', async (req, res) => {
     const { name } = req.query;
     try {
