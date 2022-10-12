@@ -1,8 +1,14 @@
-import { GET_RACES, GET_RACE_DETAIL, GET_RACES_BY_NAME } from '../actions/index.js';
+import { 
+    GET_RACES,
+    GET_RACE_DETAIL,
+    GET_RACES_BY_NAME,
+    GET_TEMPERAMENTS
+} from '../actions/index.js';
 
 const initialState = {
     racesLoaded: [],
-    raceDetail: {}
+    raceDetail: {},
+    temperamentsLoaded: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -21,6 +27,11 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 racesLoaded: action.payload
+            }
+        case GET_TEMPERAMENTS:
+            return {
+                ...state,
+                temperamentsLoaded: action.payload
             }
         default:
             return {...state};
