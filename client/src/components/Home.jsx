@@ -26,6 +26,8 @@ function Home() {
     const indexOfFirstRace = indexOfLastRace - racesPerPage;
     const currentRaces = allRaces.slice(indexOfFirstRace, indexOfLastRace);
 
+    setRacesPerPage(8);
+
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber);
     }
