@@ -3,6 +3,7 @@ import {
     GET_RACE_DETAIL,
     GET_RACES_BY_NAME,
     GET_TEMPERAMENTS,
+    POST_RACE,
     FILTER_BY_TEMPERAMENT,
     FILTER_BY_CREATED,
     SORT_ALPHABETICALLY,
@@ -14,7 +15,8 @@ const initialState = {
     allRaces: [],
     racesLoaded: [],
     raceDetail: {},
-    temperamentsLoaded: []
+    temperamentsLoaded: [],
+    errors: {}
 };
 
 function rootReducer(state = initialState, action) {
@@ -34,11 +36,15 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 racesLoaded: action.payload
-            }
+            };
         case GET_TEMPERAMENTS:
             return {
                 ...state,
                 temperamentsLoaded: action.payload
+            };
+        case POST_RACE:
+            return {
+                ...state,
             }
         case FILTER_BY_TEMPERAMENT:
             var allRaces = state.allRaces;

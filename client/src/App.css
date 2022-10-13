@@ -28,11 +28,12 @@
   color: #61dafb;
 }
 
-.paginado {
+.paginado, li {
   display: flex;
   flex-direction: row;
   text-decoration: none;
   list-style-type: none;
+  justify-content: center;
 }
 
 @keyframes App-logo-spin {

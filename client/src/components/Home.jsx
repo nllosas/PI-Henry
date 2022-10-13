@@ -4,10 +4,10 @@ import { useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
 import Card from './Card';
 import Paginado from './Paginado';
+import SearchBar from './SearchBar';
 import { 
     getRaces,
     getTemperaments,
-    getRacesByName,
     filterRacesByTemperament,
     filterByCreated,
     sortRacesByWeight,
@@ -26,7 +26,7 @@ function Home() {
     const indexOfFirstRace = indexOfLastRace - racesPerPage;
     const currentRaces = allRaces.slice(indexOfFirstRace, indexOfLastRace);
 
-    setRacesPerPage(8);
+    // setRacesPerPage(8);
 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -34,7 +34,6 @@ function Home() {
     //
 
     // Filters
-    const [searchValue, setSearchValue] = useState('');
     const [temperFilterValue, setTemperFilterValue] = useState('All');
     const [createdFilterValue, setCreatedFilterValue] = useState('All');
     const [weightSortValue, setWeightSortValue] = useState('All');
@@ -45,11 +44,6 @@ function Home() {
         dispatch(getRaces());
         dispatch(getTemperaments());
     },[dispatch])
-
-    const handleSearch = (event) => {
-        setSearchValue(event.target.value)
-        dispatch(getRacesByName(event.target.value))
-    }
 
     const handleClick = (event) => {
         event.preventDefault();
@@ -85,9 +79,9 @@ function Home() {
     return (
         <div>
             <h1>AGUANTE LOS PERROS</h1>
-            <Link to='/dog'>Crear Raza</Link>
-            <input type="text" onChange={e => handleSearch(e)}/>
-            <button onClick={e => {handleClick(e)}} value={searchValue}>
+            <Link to='/race'>Crear Raza</Link>
+            <SearchBar />
+            <button onClick={e => {handleClick(e)}}>
                 🔄
             </button>
             <div>

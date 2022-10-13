@@ -10,7 +10,7 @@ function Detail() {
     var details = useSelector((state) => state.raceDetail);
     
     const { id } = useParams();
-    console.log(id);
+    
     useEffect(() => {
         dispatch(getRaceDetail(id));
 

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Card({id, name, image, tempers, min_weight, max_weight}) {
   return (
     <div id={id}>
-        <Link to={`/dogs/${id}`}>
+        <Link to={`/home/${id}`}>
             <h3>{name}</h3>
             <img src={image} alt="img not found" width="200px" height="250px" />
         </Link>

@@ -4,14 +4,16 @@ import { Route } from "react-router-dom";
 import LandingPage from './components/LandingPage';
 import Home from './components/Home';
 import Detail from './components/Detail';
+import RaceCreate from './components/RaceCreate';
 
 function App() {
   return (
-    <React.Fragment>
-        <Route exact path="/" component={LandingPage}/>
-        <Route path="/home" component={Home}/>
-        <Route path="/dogs/:id" component={Detail}/>
-    </React.Fragment>
+    <div className='App'>
+      <Route exact path="/" component={LandingPage}/>
+      <Route exact path="/home" component={Home}/>
+      <Route path="/race" component={RaceCreate}/>
+      <Route path="/home/:id" component={Detail}/>
+    </div>
   );
 }
 

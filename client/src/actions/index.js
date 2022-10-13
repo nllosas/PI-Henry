@@ -4,6 +4,7 @@ export const GET_RACES = 'GET_RACES';
 export const GET_RACE_DETAIL = 'GET_RACE_DETAIL';
 export const GET_RACES_BY_NAME = 'GET_RACE_BY_NAME';
 export const GET_TEMPERAMENTS = 'GET_TEMPERAMENTS';
+export const POST_RACE = 'POST_RACE';
 export const FILTER_BY_TEMPERAMENT = 'FILTER_BY_TEMPERAMENT';
 export const FILTER_BY_CREATED = 'FILTER_BY_CREATED';
 export const SORT_BY_WEIGHT = 'SORT_BY_WEIGHT';
@@ -39,7 +40,7 @@ export const getRacesByName = (name) => {
             // .then(response => response.json())
             // .then((data) => dispatch({ type: GET_RACES_BY_NAME, payload: data})); 
         } catch (error) {
-            console.log(error.message)
+            console.log(error.message);
         }
     };
 };
@@ -50,6 +51,14 @@ export const getTemperaments = () => {
         return dispatch({ type: GET_TEMPERAMENTS, payload: json.data })
     }
 };
+
+export const postRace = (payload) => {
+    return async function(dispatch) {
+        const response = await axios.post('http://localhost:3001/dogs', payload);
+        console.log(response);
+        return response;
+    }
+}
 
 export const filterRacesByTemperament = (temperSelected) => {
     return {
