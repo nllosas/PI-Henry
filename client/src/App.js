@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { Route } from "react-router-dom";
-import LandingPage from './components/LandingPage';
+import LandingPage from './components/LandingPage/LandingPage';
 import Home from './components/Home';
 import Detail from './components/Detail';
 import RaceCreate from './components/RaceCreate';

@@ -27,7 +27,7 @@ function Detail() {
             <h4>Peso: {details[0].min_weight} - {details[0].max_weight} kg</h4>
             <h4>Altura: {details[0].min_height} - {details[0].max_height} cm</h4>
             {details[0].min_life_span && details[0].max_life_span ? <h4>Años de vida: {details[0].min_life_span} - {details[0].max_life_span} años</h4> : ''}
-            {/* <h5>Temperamientos: {details[0].temperaments}</h5> */}
+            <h5>Temperamientos: {details[0].temperaments.map(el => `${el.name}, `)}</h5>
             <Link to='/home'>
                 <button>Volver a la home</button>
             </Link>

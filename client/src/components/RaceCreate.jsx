@@ -51,6 +51,13 @@ export default function RaceCreate() {
             temperaments: [...input.temperaments, event.target.value]
         })
     }
+
+    const handleDelete = (el) => {
+        setInput({
+            ...input,
+            temperaments: input.temperaments.filter(temper => temper !== el)
+        })
+    }
     
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -68,7 +75,7 @@ export default function RaceCreate() {
             img: "",
             temperaments: []
         });
-        history.push('/home')
+        //history.push('/home')
     }
 
     return (
@@ -85,7 +92,7 @@ export default function RaceCreate() {
                     <label>Altura</label>
                     <div>
                         <label>Minima:</label>
-                        <input type="number" name="min_height" min={1} max={input.max_height} step={1} onChange={(e) => handleInputChangeForNumbers(e)} value={input.min_height}/>
+                        <input type="number" name="min_height" min={1} max={input.max_height} step={1} onChange={(e) => handleInputChangeForNumbers(e)} value={input.min_height} />
                     </div>
                     <div>
                         <label>Maxima:</label>
@@ -123,11 +130,24 @@ export default function RaceCreate() {
                         <option value={temper.name}>{temper.name}</option>
                     ))}
                 </select>
-                <ul><li>{input.temperaments.map(el => el + ', ')}</li></ul>
+                {
+                    input.temperaments?.map(el => 
+                            <div>
+                                <p>{el}</p>
+                                <button onClick={() => handleDelete(el)}>x</button>
+                            </div>
+                        )
+                }
                 <button>Crear Raza</button>
             </form>
             { errors.name && (
                 <p>{errors.name}</p>
+            )}
+            { errors.height && (
+                <p>{errors.height}</p>
+            )}
+            { errors.weight && (
+                <p>{errors.weight}</p>
             )}
             {   input.img &&
                     errors.img && (
@@ -144,6 +164,10 @@ export function validate(input) {
     } else if (!/^[A-Za-z ,.'-]+$/.test(input.name)) {
         errors.name = 'Nombre invalido';
     }
+
+    if (!input.min_height || !input.max_height) errors.height = 'Altura requerida';
+
+    if (!input.min_weight || !input.max_weight) errors.weight = 'Peso requerido';
 
     if (!/^(ftp|http|https):\/\/[^ "]+$/.test(input.img)) {
         errors.img = 'Link invalido';

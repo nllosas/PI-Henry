@@ -23,11 +23,15 @@ export const getRaces = () => {
 
 export const getRaceDetail = (raceId) => {
     return async function(dispatch) {
-        var json = await axios.get(`http://localhost:3001/dogs/${raceId}`);
-        return dispatch({ type: GET_RACE_DETAIL, payload: json.data });
-        // fetch(`http://localhost:3001/dogs/${raceId}`)
-        // .then(response => response.json())
-        // .then((data) => dispatch({ type: GET_RACE_DETAIL, payload: data}));
+        try {
+            var json = await axios.get(`http://localhost:3001/dogs/${raceId}`);
+            return dispatch({ type: GET_RACE_DETAIL, payload: json.data });
+            // fetch(`http://localhost:3001/dogs/${raceId}`)
+            // .then(response => response.json())
+            // .then((data) => dispatch({ type: GET_RACE_DETAIL, payload: data}));
+        } catch (error) {
+            console.log(error);
+        }
     };
 };
 
@@ -55,7 +59,6 @@ export const getTemperaments = () => {
 export const postRace = (payload) => {
     return async function(dispatch) {
         const response = await axios.post('http://localhost:3001/dogs', payload);
-        console.log(response);
         return response;
     }
 }
