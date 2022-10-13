@@ -14,26 +14,59 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    height: {
-      type: DataTypes.STRING, // cm
+    min_height: {
+      type: DataTypes.INTEGER, // cm
       allowNull: false,
-      // validate: {
-      //   min: 5,
-      //   max: 500
-      // }
+      validate: {
+        min: 1,
+        max: 500
+      }
     },
-    weight: {
-      type: DataTypes.STRING, // kg
+    max_height: {
+      type: DataTypes.INTEGER, // cm
       allowNull: false,
-      // validate: {
-      //   min: 0.5,
-      //   max: 200
-      // }
+      validate: {
+        min: 1,
+        max: 500
+      }
     },
-    life_span: {
+    min_weight: {
+      type: DataTypes.INTEGER, // kg
+      allowNull: false,
+      validate: {
+        min: 1,
+        max: 200
+      }
+    },
+    max_weight: {
+      type: DataTypes.INTEGER, // kg
+      allowNull: false,
+      validate: {
+        min: 1,
+        max: 200
+      }
+    },
+    min_life_span: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      validate: {
+        min: 1,
+        max: 99
+      }
+    },
+    max_life_span: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      validate: {
+        min: 1,
+        max: 99
+      }
+    },
+    img : {
       type: DataTypes.STRING,
       allowNull: true,
-    }, 
+      defaultValue: "https://tinyurl.com/4e893cj9"
+    },
     createdInDb: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

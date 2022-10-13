@@ -13,11 +13,14 @@ const getApiInfo = async () => {
         return {
             id: el.id,
             name: el.name,
-            weight: el.weight,
-            height: el.height,
-            life_span: el.life_span,
-            temperaments: el.temperament,
-            img: el.image
+            min_weight: el.weight.metric.split(' - ')[0],
+            max_weight: el.weight.metric.split(' - ')[1],
+            min_height: el.height.metric.split(' - ')[0],
+            max_height: el.height.metric.split(' - ')[1],
+            min_life_span: el.life_span.slice(0,-6).split(' - ')[0],
+            max_life_span: el.life_span.slice(0,-6).split(' - ')[1],
+            temperaments: el.temperament ? el.temperament.split(', ').map(el => {return {name: el}}) : [],
+            img: el.image.url
         };
     });
     return apiInfo
@@ -63,7 +66,7 @@ router.get('/:raceId', async (req, res) => {
     const { raceId } = req.params;
     try {
         const racesTotal = await getAllRaces();
-        const racesFilteredById = await racesTotal.filter(el => el.id === Number(raceId));
+        const racesFilteredById = await racesTotal.filter(el => el.id == raceId);
         racesFilteredById.length ?
         res.status(200).send(racesFilteredById) :
         res.status(404).send("ERROR. Invalid ID");
@@ -73,9 +76,9 @@ router.get('/:raceId', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const { name, height, weight, temperaments } = req.body;
+    const { name, min_height, max_height, min_weight, max_weight, temperaments } = req.body;
     try {
-        if (!name || !height || !weight) throw new Error("ERROR. Faltan datos obligatorios");
+        if (!name || !min_height || !max_height || !min_weight || !max_weight) throw new Error("ERROR. Faltan datos obligatorios");
         else {
             const createdRace = await Race.create(req.body);
 
