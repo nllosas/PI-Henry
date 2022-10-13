@@ -80,11 +80,12 @@ router.post('/', async (req, res) => {
     try {
         if (!name || !min_height || !max_height || !min_weight || !max_weight) throw new Error("ERROR. Faltan datos obligatorios");
         else {
+            console.log(req.body);
             const createdRace = await Race.create(req.body);
 
             temperaments.forEach(async temper => {
                 let temperDb = await Temperament.findAll({
-                    where: { name: temper}
+                    where: { name: temper }
                 })
                 createdRace.addTemperament(temperDb)
             })
