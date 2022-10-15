@@ -1,7 +1,132 @@
-body {
-    background-color: rgb(247, 154, 144);
+@import url('https://fonts.googleapis.com/css2?family=Chicle&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mohave:wght@600&display=swap');
+
+.background {
+    background-image: url('../../assets/background-img.png');
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
-.container {
-    background-color: salmon;
+.main_container {
+    display: flex;
+    flex-direction: row;
+    height: 85%;
+    margin: 0 auto;
+    margin-top: 5rem;
+    width: 70%;
+    justify-content: space-evenly;
+    /* background-color: red; */
+}
+
+.inner_text_container {
+    align-self: center;
+    height: 40%;
+    float: left;
+    backdrop-filter: blur(6px);
+    padding: 0 4rem;
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 3rem;
+    background-color: #d4a3734b;
+}
+
+.title {
+    text-shadow: 1.5px 1.5px #0000002c;
+    color: #faf7f0;
+    font-family: 'Chicle', cursive;
+    font-size: 3rem;
+    padding: 0 auto;
+    top: 0;
+    margin: 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+.enter_button {
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    background-color: #CCD5AE;
+    color: #FEFAE0;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-shadow: none;
+    transition-duration: 1s;
+    font-family: 'Mohave', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.enter_button:hover {
+    background-color: #D4A373;
+    padding: 1.3rem 5rem;
+    font-size: 2rem
+
+}
+
+.inner_images_container {
+    height: 100%;
+    width: 50%;
+    position: relative;
+    right: 0;
+}
+
+.big_image {
+    background-size: cover;
+    background-image: url('../../assets/big_image.jpg');
+    background-position: center;
+    height: 80%;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 3rem;
+    top: 2rem;
+    position: absolute;
+    left: 2.5rem;
+    z-index: 1;
+}
+
+.small_image_top_left {
+    background-image: url('../../assets/dog-g052824873_640.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 4rem;
+    width: 7rem;
+    height: 7rem;
+    z-index: 2;
+    top: 1rem;
+    position: absolute;
+    top: 0;
+}
+
+.small_image_middle_right {
+    background-image: url('../../assets/dog-gbcc784877_640.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 4rem;
+    width: 7rem;
+    height: 7rem;
+    z-index: 2;
+    top: 18rem;
+    right: -2rem;
+    position: absolute;
+}
+
+.small_image_bottom_left {
+    background-image: url('../../assets/labrador-retriever-g00c043963_640.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 4rem;
+    width: 7rem;
+    height: 7rem;
+    z-index: 2;
+    bottom: 4rem;
+    position: absolute;
+    background-blend-mode:color-burn;
 }
