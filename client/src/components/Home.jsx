@@ -13,20 +13,25 @@ import {
     sortRacesByWeight,
     sortRacesAlphabetically,
 } from '../actions';
+
 function Home() {
 
     const dispatch = useDispatch();
-    const allRaces = useSelector((state) => state.racesLoaded);
-    const allTemperaments = useSelector((state) => state.temperamentsLoaded);
+    
+    useEffect(() => {
+        dispatch(getRaces());
+        dispatch(getTemperaments());
+    },[dispatch])
+    
+    const racesLoaded = useSelector((state) => state.racesLoaded);
+    const temperaments = useSelector((state) => state.temperaments);
 
     // Paginado
     const [currentPage, setCurrentPage] = useState(1);
     const [racesPerPage, setRacesPerPage] = useState(8);
     const indexOfLastRace = currentPage * racesPerPage;
     const indexOfFirstRace = indexOfLastRace - racesPerPage;
-    const currentRaces = allRaces.slice(indexOfFirstRace, indexOfLastRace);
-
-    // setRacesPerPage(8);
+    const currentRaces = racesLoaded.slice(indexOfFirstRace, indexOfLastRace);
 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -40,10 +45,6 @@ function Home() {
     const [alphabeticalSortValue, setAlphabeticalSortValue] = useState('All');
     //
 
-    useEffect(() => {
-        dispatch(getRaces());
-        dispatch(getTemperaments());
-    },[dispatch])
 
     const handleClick = (event) => {
         event.preventDefault();
@@ -52,6 +53,16 @@ function Home() {
         setCreatedFilterValue("All");
         setWeightSortValue("All");
         setAlphabeticalSortValue("All");
+    }
+
+    const handleAlphabeticalSort = (event) => {
+        setAlphabeticalSortValue(event.target.value);
+        dispatch(sortRacesAlphabetically(event.target.value));
+    }
+
+    const handleWeightSort = (event) => {
+        setWeightSortValue(event.target.value);
+        dispatch(sortRacesByWeight(event.target.value));
     }
 
     const handleFilterTemper = (event) => {
@@ -64,16 +75,6 @@ function Home() {
         setCreatedFilterValue(event.target.value);
         dispatch(filterByCreated(event.target.value))
         setCurrentPage(1);
-    }
-
-    const handleWeightSort = (event) => {
-        setWeightSortValue(event.target.value);
-        dispatch(sortRacesByWeight(event.target.value));
-    }
-
-    const handleAlphabeticalSort = (event) => {
-        setAlphabeticalSortValue(event.target.value);
-        dispatch(sortRacesAlphabetically(event.target.value));
     }
 
     return (
@@ -98,7 +99,7 @@ function Home() {
                 <select onChange={e => handleFilterTemper(e)} value={temperFilterValue}>
                     <option value="All">Filtrar por Temperamiento</option>
                     {
-                        allTemperaments?.map(temperament =>
+                        temperaments?.map(temperament =>
                             <option value={`${temperament.name}`}>{temperament.name}</option>
                         )
                     }
@@ -110,12 +111,14 @@ function Home() {
                 </select>
                 <Paginado
                     racesPerPage={racesPerPage}
-                    allRaces={allRaces.length}
+                    racesLoaded={racesLoaded.length}
                     paginado={paginado}
                 />
                 <p>Pagina Actual: {currentPage}</p>
+            </div>
+            <div>
                 {
-                    currentRaces ? 
+                    racesLoaded ? 
                         currentRaces.length ? 
                         currentRaces.map(e => 
                         <Card

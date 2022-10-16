@@ -15,7 +15,7 @@ const initialState = {
     allRaces: [],
     racesLoaded: [],
     raceDetail: {},
-    temperamentsLoaded: [],
+    temperaments: [],
     errors: {}
 };
 
@@ -40,7 +40,7 @@ function rootReducer(state = initialState, action) {
         case GET_TEMPERAMENTS:
             return {
                 ...state,
-                temperamentsLoaded: action.payload
+                temperaments: action.payload
             };
         case POST_RACE:
             return {

@@ -10,8 +10,7 @@ function SearchBar() {
 
     const handleSearch = (event) => {
         event.preventDefault();
-        setSearchValue(event.target.value)
-        //dispatch(getRacesByName(searchValue))
+        setSearchValue(event.target.value);
     }
 
     const handleSubmit = (event) => {

@@ -100,9 +100,9 @@ h1 {
     width: 7rem;
     height: 7rem;
     z-index: 2;
-    top: 1rem;
-    position: absolute;
     top: 0;
+    position: absolute;
+
 }
 
 .small_image_middle_right {
@@ -129,4 +129,21 @@ h1 {
     bottom: 4rem;
     position: absolute;
     background-blend-mode:color-burn;
+}
+
+.madeby_info {
+    position: absolute;
+    bottom: 0.25rem;
+    right: 0.25rem;
+    border-radius: 0.25rem;
+    padding: 0 0.5rem;
+    font-family: 'Mohave', sans-serif;
+    color: #faf7f0;
+    background-color: #CCD5AE;
+    text-shadow: 1px 1px #D4A373;
+}
+
+.madeby_info a {
+    text-decoration: none;
+    color: #faf7f0;
 }

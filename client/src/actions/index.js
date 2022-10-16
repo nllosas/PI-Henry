@@ -26,9 +26,6 @@ export const getRaceDetail = (raceId) => {
         try {
             var json = await axios.get(`http://localhost:3001/dogs/${raceId}`);
             return dispatch({ type: GET_RACE_DETAIL, payload: json.data });
-            // fetch(`http://localhost:3001/dogs/${raceId}`)
-            // .then(response => response.json())
-            // .then((data) => dispatch({ type: GET_RACE_DETAIL, payload: data}));
         } catch (error) {
             console.log(error);
         }
@@ -39,10 +36,7 @@ export const getRacesByName = (name) => {
     return async function(dispatch) {
         try {
             var json = await axios.get(`http://localhost:3001/dogs?name=${name}`);
-            return dispatch({ type: GET_RACES_BY_NAME, payload: json.data })
-            // fetch(`http://localhost:3001/dogs?name=${name}`)
-            // .then(response => response.json())
-            // .then((data) => dispatch({ type: GET_RACES_BY_NAME, payload: data})); 
+            return dispatch({ type: GET_RACES_BY_NAME, payload: json.data }); 
         } catch (error) {
             console.log(error.message);
         }

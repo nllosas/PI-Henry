@@ -21,6 +21,9 @@ function LandingPage() {
           <div className={style.small_image_bottom_left}/>
         </div>
       </div>
+      <div className={style.madeby_info}>
+        made by: <a href="https://github.com/nllosas">nllosas</a>
+      </div>
     </div>
   )
 }
