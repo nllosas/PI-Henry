@@ -1,10 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import Card from './Card';
 import Paginado from './Paginado';
-import SearchBar from './SearchBar';
+//import SearchBar from './SearchBar';
 import { 
     getRaces,
     getTemperaments,
@@ -13,6 +13,7 @@ import {
     sortRacesByWeight,
     sortRacesAlphabetically,
 } from '../actions';
+import NavBar from './NavBar/NavBar';
 
 function Home() {
 
@@ -79,25 +80,24 @@ function Home() {
 
     return (
         <div>
+            <NavBar searchBar={true}/>
             <h1>AGUANTE LOS PERROS</h1>
-            <Link to='/race'>Crear Raza</Link>
-            <SearchBar />
             <button onClick={e => {handleClick(e)}}>
                 🔄
             </button>
             <div>
                 <select onChange={e => handleAlphabeticalSort(e)} value={alphabeticalSortValue}>
-                    <option value="All">Orden alfabético</option>
+                    <option value="All">Order alphabetically</option>
                     <option value="asc">A-Z</option>
                     <option value="des">Z-A</option>
                 </select>
                 <select onChange={e => handleWeightSort(e)} value={weightSortValue}>
-                    <option value="All">Ordenar por Peso</option>
-                    <option value="minWeight">Peso Minimo</option>
-                    <option value="maxWeight">Peso Maximo</option>
+                    <option value="All">Order by Avg Weight</option>
+                    <option value="lowHigh">Low to High</option>
+                    <option value="highLow">High to Low</option>
                 </select>
                 <select onChange={e => handleFilterTemper(e)} value={temperFilterValue}>
-                    <option value="All">Filtrar por Temperamiento</option>
+                    <option value="All">Filter by temper</option>
                     {
                         temperaments?.map(temperament =>
                             <option value={`${temperament.name}`}>{temperament.name}</option>
@@ -105,8 +105,8 @@ function Home() {
                     }
                 </select>
                 <select onChange={e => {handleFilterCreated(e)}} value={createdFilterValue}>
-                    <option value="All">Filtrar por Raza Existente</option>
-                    <option value="created">Creadas</option>
+                    <option value="All">Filtrar by Crated</option>
+                    <option value="created">Created</option>
                     <option value="api">API</option>
                 </select>
                 <Paginado

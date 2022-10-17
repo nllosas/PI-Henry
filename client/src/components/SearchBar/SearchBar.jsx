@@ -1,7 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getRacesByName } from '../actions';
+import { getRacesByName } from '../../actions';
+import style from './SearchBar.module.css';
+import { BsSearch } from 'react-icons/bs';
 
 function SearchBar() {
     const dispatch = useDispatch();
@@ -22,8 +24,8 @@ function SearchBar() {
     return (
         <form onSubmit={(e) => {handleSubmit(e)}}>
             <div>
-                <input type="text" onChange={e => handleSearch(e)} value={searchValue} placeholder="Buscar..."/>
-                <button type="submit">Buscar</button>
+                <input type="text" onChange={e => handleSearch(e)} value={searchValue} placeholder="Buscar..." className={style.input}/>
+                <button type="submit" className={style.button}><BsSearch/></button>
             </div>
         </form>
     )

@@ -5,9 +5,13 @@
     bottom: 0;
     left: 0;
     right: 0;
-    width: 100%;
-    height: 100%;
+    width: 45vw;
+    height: 70vh;
     overflow: hidden;
+    margin: 15vh 20vw;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
     z-index: 1;
 }
 
@@ -34,19 +38,29 @@
     width: 70vw;
     background-color: #ffffff25;
     z-index: 2;
-    margin: 15vh 15vw;
+    /* margin: 15vh 15vw; */
+    border-radius: 0.5rem;
+    display: grid;
+    justify-content: center;
+}
+
+h2, h4 {
+    margin: 0 auto;
+}
+
+.breed_img {
+    width: 20vw;
+    height: auto;
+    border-radius: 1rem;
 }
 
 
 
 
-
-
-
-
 .loading_screen {
-    width: 100vw;
-    height: 100%;
+    width: 45vw;
+    height: 70vh;
+    margin: 15vh 20vw;
     background-color: #6A516A;
     overflow: hidden;
     position: absolute;
@@ -55,8 +69,8 @@
 
 .loading_img {
     position: absolute;
-    padding: 0 20rem;
-    width: 65vw;
+    top: 0;
+    width: 100%;
     height: 100%;
     z-index: 2;
 }

@@ -1,0 +1,37 @@
+.input {
+    height: 2rem;
+    padding-left: 10px;
+    border: none;
+    border-radius: 0.25rem;
+    margin-right: 0.5rem;
+    background-color: #FAEDCD;
+    font-size: 1rem;
+    transition: 300ms;
+}
+
+.input::placeholder {
+    color: #D4A373;
+    font-weight: 700;
+}
+
+.input:focus {
+    padding: 0.5rem;
+    outline: none;
+}
+
+.button {
+    background-color: transparent;
+    padding: 0.9rem;
+    border: none;
+    font-size: 1.35rem;
+    color: #D4A373;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.button:hover {
+    background-color: #E9EDC9;
+    border-radius: 9999px;
+    padding: 0.9rem 1.1rem;
+    margin-right: -2px;
+}

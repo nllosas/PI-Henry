@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link , useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { postRace, getTemperaments } from '../actions';
+import NavBar from './NavBar/NavBar';
 
 export default function RaceCreate() {
     const dispatch = useDispatch();
     const history = useHistory();
-    const temperaments = useSelector((state) => state.temperamentsLoaded);
+    const temperaments = useSelector((state) => state.temperaments);
 
     const [input, setInput] = useState({
         name: "",
@@ -75,14 +76,12 @@ export default function RaceCreate() {
             img: "",
             temperaments: []
         });
-        //history.push('/home')
+        history.push('/home')
     }
 
     return (
         <div>
-            <Link to='/home'>
-                <button>Volver</button>
-            </Link>
+            <NavBar searchBar={false} />
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div>
                     <label>Nombre:</label>

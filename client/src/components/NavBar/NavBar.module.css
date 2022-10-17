@@ -1,0 +1,68 @@
+.navBar {
+    display: flex;
+    height: 7vh;
+    flex-direction: row;
+    padding: 0.5rem 1rem;
+    background-color: #FEFAE0;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.links_container {
+    display: flex;
+    flex-direction: row;
+    width: 30vw;
+    align-items: center;
+}
+
+.links {
+    text-decoration: none;
+    color:#D4A373;
+    padding: 0;
+}
+
+.home_links_container {
+    display: flex;
+    flex-direction: row;
+}
+
+.home_link, .create_link, .link_separator {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #D4A373;
+    align-self: center;
+    text-align: center;
+    transition: 100ms;
+}
+
+.home_link:hover, .create_link:hover {
+    background-color: #E9EDC9;
+    border-radius: 0.75rem;
+    padding-top: 0.5rem;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    padding-bottom: 0.3rem;
+    margin: 0 -0.5rem 0 1rem;
+}
+
+.dog_icon {
+    background-image: url('../../assets/dogIcon.png');
+    background-repeat: none;
+    background-size: cover;
+    height: 3rem;
+    width: 3rem;
+}
+
+.dog_icon:hover {
+    background-image: url('../../assets/dogIconTounge.jpg');
+    background-repeat: none;
+    background-size: cover;
+    height: 3rem;
+    width: 3rem;
+}
+
+span {
+    margin-left: 2rem;
+    text-transform: uppercase;
+    font-family: 'Mohave';
+}

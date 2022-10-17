@@ -70,11 +70,23 @@ function rootReducer(state = initialState, action) {
             }
         case SORT_BY_WEIGHT:
             allRaces = state.racesLoaded;
+            const calc_avg_weight = (min_weight, max_weight) => {
+                let avg = 0;
+                min_weight = Number(min_weight);
+                max_weight = Number(max_weight);
+                if (min_weight && max_weight) {
+                    avg = (min_weight + max_weight) / 2;
+                } else {
+                    avg = !min_weight ? !max_weight ? 0 : max_weight : min_weight;
+                }
+                return avg;
+            }
+
             const weightSorted = action.payload === 'All' ?
                 allRaces :
-                action.payload === 'minWeight' ?
-                    allRaces.sort((a, b) => (Number(a.min_weight) > Number(b.min_weight)) ? 1 : (Number(a.min_weight) < Number(b.min_weight)) ? -1 : 0) :
-                    allRaces.sort((a, b) => (Number(a.max_weight) > Number(b.max_weight)) ? 1 : (Number(a.max_weight) < Number(b.max_weight)) ? -1 : 0);
+                action.payload === 'lowHigh' ?
+                    allRaces.sort((a, b) => (calc_avg_weight(a.min_weight, a.max_weight) > calc_avg_weight(b.min_weight, b.max_weight)) ? 1 : (calc_avg_weight(a.min_weight, a.max_weight) < calc_avg_weight(b.min_weight, b.max_weight)) ? -1 : 0) :
+                    allRaces.sort((a, b) => (calc_avg_weight(b.min_weight, b.max_weight) > calc_avg_weight(a.min_weight, a.max_weight)) ? 1 : (calc_avg_weight(b.min_weight, b.max_weight) < calc_avg_weight(a.min_weight, a.max_weight)) ? -1 : 0);
 
             return {
                 ...state,
