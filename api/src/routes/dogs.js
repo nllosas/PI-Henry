@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios');
-const { Race, Temperament } = require('../db');
+const { Breed, Temperament } = require('../db');
 const router = Router();
 
 // 'api_key=live_dZ1w9VWsQnDZcNqqVUWYB5WVw5Wh6w3lGgzRcEDK3cD0tZ7G5QdwaLGADSxl1Gt5'
@@ -27,7 +27,7 @@ const getApiInfo = async () => {
 };
 
 const getDbInfo = async () => {
-    return await Race.findAll({
+    return await Breed.findAll({
         include: {
             model: Temperament,
             attributes: ['name'],
@@ -38,7 +38,7 @@ const getDbInfo = async () => {
     })
 }
 
-const getAllRaces = async () => {
+const getAllBreeds = async () => {
     const apiInfo = await getApiInfo();
     const dbInfo = await getDbInfo();
     const infoTotal = apiInfo.concat(dbInfo);
@@ -48,28 +48,28 @@ const getAllRaces = async () => {
 router.get('/', async (req, res) => {
     const { name } = req.query;
     try {
-        let racesTotal = await getAllRaces();
+        let breedsTotal = await getAllBreeds();
         if (name) {
-            let racesFilteredByName = await racesTotal.filter(el => el.name.toLowerCase().includes(name.toLowerCase()));
-            racesFilteredByName.length ?
-            res.status(200).send(racesFilteredByName) :
+            let breedsFilteredByName = await breedsTotal.filter(el => el.name.toLowerCase().includes(name.toLowerCase()));
+            breedsFilteredByName.length ?
+            res.status(200).send(breedsFilteredByName) :
             res.status(404).send('ERROR. La raza buscada no existe')
         } else {
-            res.status(200).send(racesTotal);
+            res.status(200).send(breedsTotal);
         }
     } catch (error) {
         res.status(404).send(error.message);
     }
 });
 
-router.get('/:raceId', async (req, res) => {
-    const { raceId } = req.params;
+router.get('/:breedId', async (req, res) => {
+    const { breedId } = req.params;
     try {
-        const racesTotal = await getAllRaces();
-        const racesFilteredById = await racesTotal.filter(el => el.id == raceId);
-        racesFilteredById.length ?
-        res.status(200).send(racesFilteredById) :
-        res.status(404).send("ERROR. Invalid ID");
+        const breedsTotal = await getAllBreeds();
+        const breedsFilteredById = await breedsTotal.filter(el => el.id == breedId);
+        breedsFilteredById.length ?
+        res.status(200).send(breedsFilteredById) :
+        res.status(404).send("ERROR. ID Invalido");
     } catch (error) {
         res.status(404).send(error.message);
     }
@@ -81,13 +81,13 @@ router.post('/', async (req, res) => {
         if (!name || !min_height || !max_height || !min_weight || !max_weight) throw new Error("ERROR. Faltan datos obligatorios");
         else {
             console.log(req.body);
-            const createdRace = await Race.create(req.body);
+            const createdBreed = await Breed.create(req.body);
 
             temperaments.forEach(async temper => {
                 let temperDb = await Temperament.findAll({
                     where: { name: temper }
                 })
-                createdRace.addTemperament(temperDb)
+                createdBreed.addTemperament(temperDb)
             })
             
             res.status(201).send("Raza creada con exito");

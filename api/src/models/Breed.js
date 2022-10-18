@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('race', {
+  sequelize.define('breed', {
     id: {
       type: DataTypes.UUID,             // Tipo de dato predeterminado que ya trae sequelize, es un codigo auto-incremental hexadecimal
       defaultValue: DataTypes.UUIDV4,   // Lo uso para que no se me pisen los id de la api externa con los id de mi base de datos.
