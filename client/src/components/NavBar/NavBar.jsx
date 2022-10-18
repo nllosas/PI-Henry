@@ -10,7 +10,7 @@ function NavBar({searchBar}) {
             <div className={style.dog_icon}/>
             <span className={style.home_link}><Link to='/home' className={style.links}>HOME</Link></span>
             <span className={style.link_separator}>|</span>
-            <span className={style.create_link}><Link to='/create' className={style.links}>CREATE</Link></span>
+            <span className={style.create_link}><Link to='/create' className={style.links}>ADD BREED</Link></span>
         </div>
         { searchBar && <SearchBar /> }
     </nav >

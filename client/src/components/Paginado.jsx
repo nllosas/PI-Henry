@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Paginado({racesPerPage, racesLoaded, paginado}) {
+function Paginado({breedsPerPage, breedsLoaded, paginado}) {
   const pageNumbers = []
 
-  for (let i=1; i <= Math.ceil(racesLoaded/racesPerPage); i++) {
+  for (let i=1; i <= Math.ceil(breedsLoaded/breedsPerPage); i++) {
     pageNumbers.push(i);
   }
 

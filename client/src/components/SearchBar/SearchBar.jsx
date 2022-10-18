@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getRacesByName } from '../../actions';
+import { getBreedsByName } from '../../actions';
 import style from './SearchBar.module.css';
 import { BsSearch } from 'react-icons/bs';
 
@@ -17,7 +17,7 @@ function SearchBar() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(getRacesByName(searchValue))
+        dispatch(getBreedsByName(searchValue))
         setSearchValue('');
     }
 

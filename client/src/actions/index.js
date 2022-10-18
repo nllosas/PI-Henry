@@ -1,42 +1,42 @@
 import axios from 'axios';
 
-export const GET_RACES = 'GET_RACES';
-export const GET_RACE_DETAIL = 'GET_RACE_DETAIL';
-export const GET_RACES_BY_NAME = 'GET_RACE_BY_NAME';
+export const GET_BREEDS = 'GET_BREEDS';
+export const GET_BREED_DETAIL = 'GET_BREED_DETAIL';
+export const GET_BREEDS_BY_NAME = 'GET_BREEDS_BY_NAME';
 export const GET_TEMPERAMENTS = 'GET_TEMPERAMENTS';
-export const POST_RACE = 'POST_RACE';
+export const POST_BREED = 'POST_BREED';
 export const FILTER_BY_TEMPERAMENT = 'FILTER_BY_TEMPERAMENT';
 export const FILTER_BY_CREATED = 'FILTER_BY_CREATED';
 export const SORT_BY_WEIGHT = 'SORT_BY_WEIGHT';
 export const SORT_ALPHABETICALLY = 'SORT_ALPHABETICALLY';
 export const CLEAR_DETAIL = 'CLEAR_DETAIL';
 
-export const getRaces = () => {
+export const getBreeds = () => {
     return async function(dispatch) {
         var json = await axios.get(`http://localhost:3001/dogs`);
-        return dispatch({ type: GET_RACES, payload: json.data })
+        return dispatch({ type: GET_BREEDS, payload: json.data })
         // fetch(`http://localhost:3001/dogs`)
         // .then(response => response.json())
-        // .then((data) => dispatch({ type: GET_RACES, payload: data}));
+        // .then((data) => dispatch({ type: GET_BREEDS, payload: data}));
     };
 };
 
-export const getRaceDetail = (raceId) => {
+export const getBreedDetail = (breedId) => {
     return async function(dispatch) {
         try {
-            var json = await axios.get(`http://localhost:3001/dogs/${raceId}`);
-            return dispatch({ type: GET_RACE_DETAIL, payload: json.data });
+            var json = await axios.get(`http://localhost:3001/dogs/${breedId}`);
+            return dispatch({ type: GET_BREED_DETAIL, payload: json.data });
         } catch (error) {
             console.log(error);
         }
     };
 };
 
-export const getRacesByName = (name) => {
+export const getBreedsByName = (name) => {
     return async function(dispatch) {
         try {
             var json = await axios.get(`http://localhost:3001/dogs?name=${name}`);
-            return dispatch({ type: GET_RACES_BY_NAME, payload: json.data }); 
+            return dispatch({ type: GET_BREEDS_BY_NAME, payload: json.data }); 
         } catch (error) {
             console.log(error.message);
         }
@@ -45,19 +45,27 @@ export const getRacesByName = (name) => {
 
 export const getTemperaments = () => {
     return async function(dispatch) {
-        var json = await axios.get('http://localhost:3001/temperaments');
-        return dispatch({ type: GET_TEMPERAMENTS, payload: json.data })
+        try {
+            var json = await axios.get('http://localhost:3001/temperaments');
+            return dispatch({ type: GET_TEMPERAMENTS, payload: json.data })
+        } catch (error) {
+            console.log(error.message);
+        }
     }
 };
 
-export const postRace = (payload) => {
+export const postBreed = (payload) => {
     return async function(dispatch) {
-        const response = await axios.post('http://localhost:3001/dogs', payload);
-        return response;
+        try {
+            const response = await axios.post('http://localhost:3001/dogs', payload);
+            return response;
+        } catch (error) {
+            console.log(error.message);
+        }
     }
 }
 
-export const filterRacesByTemperament = (temperSelected) => {
+export const filterBreedsByTemperament = (temperSelected) => {
     return {
         type: FILTER_BY_TEMPERAMENT,
         payload: temperSelected
@@ -71,14 +79,14 @@ export const filterByCreated = (filterSelected) => {
     }
 };
 
-export const sortRacesByWeight = (weightOption) => {
+export const sortBreedsByWeight = (weightOption) => {
     return {
         type: SORT_BY_WEIGHT,
         payload: weightOption
     }
 };
 
-export const sortRacesAlphabetically = (sortOption) => {
+export const sortBreedsAlphabetically = (sortOption) => {
     return {
         type: SORT_ALPHABETICALLY,
         payload: sortOption

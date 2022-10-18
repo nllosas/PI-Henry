@@ -1,9 +1,9 @@
 import { 
-    GET_RACES,
-    GET_RACE_DETAIL,
-    GET_RACES_BY_NAME,
+    GET_BREEDS,
+    GET_BREED_DETAIL,
+    GET_BREEDS_BY_NAME,
     GET_TEMPERAMENTS,
-    POST_RACE,
+    POST_BREED,
     FILTER_BY_TEMPERAMENT,
     FILTER_BY_CREATED,
     SORT_ALPHABETICALLY,
@@ -12,64 +12,64 @@ import {
 } from '../actions/index.js';
 
 const initialState = {
-    allRaces: [],
-    racesLoaded: [],
-    raceDetail: {},
+    allBreeds: [],
+    breedsLoaded: [],
+    breedDetail: {},
     temperaments: [],
     errors: {}
 };
 
 function rootReducer(state = initialState, action) {
     switch(action.type) {
-        case GET_RACES:
+        case GET_BREEDS:
             return {
                 ...state,
-                allRaces: action.payload,
-                racesLoaded: action.payload
+                allBreeds: action.payload,
+                breedsLoaded: action.payload
             };
-        case GET_RACE_DETAIL:
+        case GET_BREED_DETAIL:
             return {
                 ...state,
-                raceDetail: action.payload
+                breedDetail: action.payload
             };
-        case GET_RACES_BY_NAME:
+        case GET_BREEDS_BY_NAME:
             return {
                 ...state,
-                racesLoaded: action.payload
+                breedsLoaded: action.payload
             };
         case GET_TEMPERAMENTS:
             return {
                 ...state,
                 temperaments: action.payload
             };
-        case POST_RACE:
+        case POST_BREED:
             return {
                 ...state,
             }
         case FILTER_BY_TEMPERAMENT:
-            var allRaces = state.allRaces;
+            var allBreeds = state.allBreeds;
             const temperFiltered = action.payload === 'All' ?
-                allRaces :
-                allRaces.filter(race => race.temperaments.some(t => t.name === action.payload));
+                allBreeds :
+                allBreeds.filter(breed => breed.temperaments.some(t => t.name === action.payload));
 
             return {
                 ...state,
-                racesLoaded: temperFiltered
+                breedsLoaded: temperFiltered
             }
         case FILTER_BY_CREATED:
-            allRaces = state.allRaces;
+            allBreeds = state.allBreeds;
             const createdFiltered = action.payload === 'All' ?
-            allRaces :
+            allBreeds :
             action.payload === 'created' ?
-                allRaces.filter(race => race.createdInDb) :
-                allRaces.filter(race => !race.createdInDb);
+                allBreeds.filter(breed => breed.createdInDb) :
+                allBreeds.filter(breed => !breed.createdInDb);
 
             return {
                 ...state,
-                racesLoaded: createdFiltered
+                breedsLoaded: createdFiltered
             }
         case SORT_BY_WEIGHT:
-            allRaces = state.racesLoaded;
+            allBreeds = state.breedsLoaded;
             const calc_avg_weight = (min_weight, max_weight) => {
                 let avg = 0;
                 min_weight = Number(min_weight);
@@ -83,30 +83,30 @@ function rootReducer(state = initialState, action) {
             }
 
             const weightSorted = action.payload === 'All' ?
-                allRaces :
+                allBreeds :
                 action.payload === 'lowHigh' ?
-                    allRaces.sort((a, b) => (calc_avg_weight(a.min_weight, a.max_weight) > calc_avg_weight(b.min_weight, b.max_weight)) ? 1 : (calc_avg_weight(a.min_weight, a.max_weight) < calc_avg_weight(b.min_weight, b.max_weight)) ? -1 : 0) :
-                    allRaces.sort((a, b) => (calc_avg_weight(b.min_weight, b.max_weight) > calc_avg_weight(a.min_weight, a.max_weight)) ? 1 : (calc_avg_weight(b.min_weight, b.max_weight) < calc_avg_weight(a.min_weight, a.max_weight)) ? -1 : 0);
+                    allBreeds.sort((a, b) => (calc_avg_weight(a.min_weight, a.max_weight) > calc_avg_weight(b.min_weight, b.max_weight)) ? 1 : (calc_avg_weight(a.min_weight, a.max_weight) < calc_avg_weight(b.min_weight, b.max_weight)) ? -1 : 0) :
+                    allBreeds.sort((a, b) => (calc_avg_weight(b.min_weight, b.max_weight) > calc_avg_weight(a.min_weight, a.max_weight)) ? 1 : (calc_avg_weight(b.min_weight, b.max_weight) < calc_avg_weight(a.min_weight, a.max_weight)) ? -1 : 0);
 
             return {
                 ...state,
-                racesLoaded: weightSorted
+                breedsLoaded: weightSorted
             }
         case SORT_ALPHABETICALLY:
-            allRaces = state.racesLoaded;
-            const racesSorted = action.payload === 'All' ?
-                allRaces :
+            allBreeds = state.breedsLoaded;
+            const breedsSorted = action.payload === 'All' ?
+                allBreeds :
                 action.payload === 'asc' ? 
-                    allRaces.sort((a, b) => (a.name > b.name) ? 1 : (a.name < b.name) ? -1 : 0 ) : 
-                    allRaces.sort((a, b) => (a.name < b.name) ? 1 : (a.name > b.name) ? -1 : 0 );
+                    allBreeds.sort((a, b) => (a.name > b.name) ? 1 : (a.name < b.name) ? -1 : 0 ) : 
+                    allBreeds.sort((a, b) => (a.name < b.name) ? 1 : (a.name > b.name) ? -1 : 0 );
             return {
                 ...state, 
-                racesLoaded: racesSorted,
+                breedsLoaded: breedsSorted,
             }
         case CLEAR_DETAIL:
             return {
                 ...state,
-                raceDetail: action.payload
+                breedDetail: action.payload
             }
         default:
             return {...state};

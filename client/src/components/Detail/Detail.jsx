@@ -2,20 +2,20 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { getRaceDetail, clearDetail } from '../../actions';
+import { getBreedDetail, clearDetail } from '../../actions';
 import style from './Detail.module.css';
 
 function Detail(props) {
 
     const dispatch = useDispatch();
-    var details = useSelector((state) => state.raceDetail);
+    var details = useSelector((state) => state.breedDetail);
     
     const { id } = useParams();
     
     //const id  = props.match.params.id;
 
     useEffect(() => {
-        dispatch(getRaceDetail(id));
+        dispatch(getBreedDetail(id));
 
         return () => {
             dispatch(clearDetail());

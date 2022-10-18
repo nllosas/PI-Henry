@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { postRace, getTemperaments } from '../actions';
+import { postBreed, getTemperaments } from '../actions';
 import NavBar from './NavBar/NavBar';
 
-export default function RaceCreate() {
+export default function BreedCreate() {
     const dispatch = useDispatch();
     const history = useHistory();
     const temperaments = useSelector((state) => state.temperaments);
@@ -63,7 +63,7 @@ export default function RaceCreate() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(input);
-        dispatch(postRace(input));
+        dispatch(postBreed(input));
         alert('Raza creada')
         setInput({
             name: "",

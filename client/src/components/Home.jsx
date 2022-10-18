@@ -1,38 +1,36 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-//import { Link } from 'react-router-dom';
 import Card from './Card';
 import Paginado from './Paginado';
-//import SearchBar from './SearchBar';
-import { 
-    getRaces,
-    getTemperaments,
-    filterRacesByTemperament,
-    filterByCreated,
-    sortRacesByWeight,
-    sortRacesAlphabetically,
-} from '../actions';
 import NavBar from './NavBar/NavBar';
+import { 
+    getBreeds,
+    getTemperaments,
+    filterBreedsByTemperament,
+    filterByCreated,
+    sortBreedsByWeight,
+    sortBreedsAlphabetically,
+} from '../actions';
 
 function Home() {
 
     const dispatch = useDispatch();
     
     useEffect(() => {
-        dispatch(getRaces());
+        dispatch(getBreeds());
         dispatch(getTemperaments());
     },[dispatch])
     
-    const racesLoaded = useSelector((state) => state.racesLoaded);
+    const breedsLoaded = useSelector((state) => state.breedsLoaded);
     const temperaments = useSelector((state) => state.temperaments);
 
     // Paginado
     const [currentPage, setCurrentPage] = useState(1);
-    const [racesPerPage, setRacesPerPage] = useState(8);
-    const indexOfLastRace = currentPage * racesPerPage;
-    const indexOfFirstRace = indexOfLastRace - racesPerPage;
-    const currentRaces = racesLoaded.slice(indexOfFirstRace, indexOfLastRace);
+    const [breedsPerPage, setBreedsPerPage] = useState(8);
+    const indexOfLastBreed = currentPage * breedsPerPage;
+    const indexOfFirstBreed = indexOfLastBreed - breedsPerPage;
+    const currentBreeds = breedsLoaded.slice(indexOfFirstBreed, indexOfLastBreed);
 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -49,7 +47,7 @@ function Home() {
 
     const handleClick = (event) => {
         event.preventDefault();
-        dispatch(getRaces());
+        dispatch(getBreeds());
         setTemperFilterValue("All");
         setCreatedFilterValue("All");
         setWeightSortValue("All");
@@ -58,17 +56,17 @@ function Home() {
 
     const handleAlphabeticalSort = (event) => {
         setAlphabeticalSortValue(event.target.value);
-        dispatch(sortRacesAlphabetically(event.target.value));
+        dispatch(sortBreedsAlphabetically(event.target.value));
     }
 
     const handleWeightSort = (event) => {
         setWeightSortValue(event.target.value);
-        dispatch(sortRacesByWeight(event.target.value));
+        dispatch(sortBreedsByWeight(event.target.value));
     }
 
     const handleFilterTemper = (event) => {
         setTemperFilterValue(event.target.value);
-        dispatch(filterRacesByTemperament(event.target.value));
+        dispatch(filterBreedsByTemperament(event.target.value));
         setCurrentPage(1);
     }
 
@@ -81,7 +79,7 @@ function Home() {
     return (
         <div>
             <NavBar searchBar={true}/>
-            <h1>AGUANTE LOS PERROS</h1>
+            <h1>DOGS</h1>
             <button onClick={e => {handleClick(e)}}>
                 🔄
             </button>
@@ -110,17 +108,17 @@ function Home() {
                     <option value="api">API</option>
                 </select>
                 <Paginado
-                    racesPerPage={racesPerPage}
-                    racesLoaded={racesLoaded.length}
+                    breedsPerPage={breedsPerPage}
+                    breedsLoaded={breedsLoaded.length}
                     paginado={paginado}
                 />
                 <p>Pagina Actual: {currentPage}</p>
             </div>
             <div>
                 {
-                    racesLoaded ? 
-                        currentRaces.length ? 
-                        currentRaces.map(e => 
+                    breedsLoaded ? 
+                        currentBreeds.length ? 
+                        currentBreeds.map(e => 
                         <Card
                             id={e.id}
                             name={e.name}
