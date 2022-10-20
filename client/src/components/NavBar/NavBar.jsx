@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 import style from '../NavBar/NavBar.module.css';
 
-function NavBar({searchBar}) {
+function NavBar({searchBar, paginado}) {
     return (
     <nav className={style.navBar}>
         <div className={style.links_container}>
@@ -12,7 +12,7 @@ function NavBar({searchBar}) {
             <span className={style.link_separator}>|</span>
             <span className={style.create_link}><Link to='/create' className={style.links}>ADD BREED</Link></span>
         </div>
-        { searchBar && <SearchBar /> }
+        { searchBar && <SearchBar paginado={paginado}/> }
     </nav >
   )
 }

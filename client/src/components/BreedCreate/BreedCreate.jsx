@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { postBreed, getTemperaments } from '../actions';
-import NavBar from './NavBar/NavBar';
+import { postBreed, getTemperaments } from '../../actions';
+import NavBar from '../NavBar/NavBar';
+import style from './BreedCreate.module.css';
 
 export default function BreedCreate() {
     const dispatch = useDispatch();
@@ -80,53 +81,53 @@ export default function BreedCreate() {
     }
 
     return (
-        <div>
+        <div className={style.body}>
             <NavBar searchBar={false} />
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={(e) => handleSubmit(e)} className={style.form}>
                 <div>
-                    <label>Nombre:</label>
+                    <label>Breed Name:</label>
                     <input type="text" name="name" onChange={(e) => handleInputChange(e)} value={input.name}/>
                 </div>
                 <div>
-                    <label>Altura</label>
+                    <label>Height</label>
                     <div>
-                        <label>Minima:</label>
+                        <label>Minimum:</label>
                         <input type="number" name="min_height" min={1} max={input.max_height} step={1} onChange={(e) => handleInputChangeForNumbers(e)} value={input.min_height} />
                     </div>
                     <div>
-                        <label>Maxima:</label>
+                        <label>Maximum:</label>
                         <input type="number" name="max_height" min={input.min_height} max={500} step={1} onChange={(e) => handleInputChangeForNumbers(e)} value={input.max_height}/>
                     </div>
                 </div>
                 <div>
-                    <label>Peso</label>
+                    <label>Weight</label>
                     <div>
-                        <label>Minimo:</label>
+                        <label>Minimum:</label>
                         <input type="number" name="min_weight" min={1} max={input.max_weight} step={1} onChange={(e) => handleInputChangeForNumbers(e)} value={input.min_weight}/>
                     </div>
                     <div>
-                        <label>Maximo:</label>
+                        <label>Maximum:</label>
                         <input type="number" name="max_weight" min={input.min_weight} max={200} step={1} onChange={(e) => handleInputChangeForNumbers(e)} value={input.max_weight}/>
                     </div>
                 </div>
                 <div>
-                    <label>Esperanza de vida</label>
+                    <label>Life Span</label>
                     <div>
-                        <label>Minima:</label>
+                        <label>Minimum:</label>
                         <input type="number" name="min_life_span" min={1} max={input.max_life_span} step={1} onChange={(e) => handleInputChangeForNumbers(e)} value={input.min_life_span}/>
                     </div>
                     <div>
-                        <label>Maxima:</label>
+                        <label>Maximum:</label>
                         <input type="number" name="max_life_span" min={input.min_life_span} max={99} step={1} onChange={(e) => handleInputChangeForNumbers(e)} value={input.max_life_span}/>
                     </div>
                 </div>
                 <div>
-                    <label>Link a la Imagen:</label>
+                    <label>Link to Image:</label>
                     <input type="url" name="img" onChange={(e) => handleInputChange(e)} value={input.img} />
                 </div>
                 <select onChange={(e) => handleSelect(e)}>
                     {temperaments.map((temper) => (
-                        <option value={temper.name}>{temper.name}</option>
+                        <option key={temper.name} value={temper.name}>{temper.name}</option>
                     ))}
                 </select>
                 {
@@ -137,7 +138,7 @@ export default function BreedCreate() {
                             </div>
                         )
                 }
-                <button>Crear Raza</button>
+                <button>Add Breed</button>
             </form>
             { errors.name && (
                 <p>{errors.name}</p>

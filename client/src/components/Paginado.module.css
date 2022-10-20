@@ -1,0 +1,6 @@
+.paginado {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    column-gap: 2px;
+}

@@ -5,7 +5,7 @@ import { getBreedsByName } from '../../actions';
 import style from './SearchBar.module.css';
 import { BsSearch } from 'react-icons/bs';
 
-function SearchBar() {
+function SearchBar({paginado}) {
     const dispatch = useDispatch();
 
     const [searchValue, setSearchValue] = useState('');
@@ -19,12 +19,13 @@ function SearchBar() {
         event.preventDefault();
         dispatch(getBreedsByName(searchValue))
         setSearchValue('');
+        paginado(1);
     }
 
     return (
         <form onSubmit={(e) => {handleSubmit(e)}}>
             <div>
-                <input type="text" onChange={e => handleSearch(e)} value={searchValue} placeholder="Buscar..." className={style.input}/>
+                <input type="text" onChange={e => handleSearch(e)} value={searchValue} placeholder="Search..." className={style.input}/>
                 <button type="submit" className={style.button}><BsSearch/></button>
             </div>
         </form>
