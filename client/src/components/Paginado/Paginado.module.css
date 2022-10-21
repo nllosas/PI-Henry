@@ -1,0 +1,31 @@
+.paginado {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    column-gap: 0.5rem;
+    background-color: #FAEDCD;
+    padding: 0.5rem;
+    border-radius: 0.25em;
+}
+
+.currentPageStyle, .notCurrentPageStyle {
+    font-family: 'Mohave';
+    font-size: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 2px 10px 0 10px;
+
+}
+
+.currentPageStyle, .notCurrentPageStyle:hover {
+    margin: 0;
+    color: #FEFAE0;
+    background-color: #D4A373;
+    border-radius: 4px;
+}
+
+.notCurrentPageStyle {
+    color: #D4A373;
+    transition: 300ms;
+}

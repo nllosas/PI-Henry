@@ -17,16 +17,12 @@
     row-gap: 0.5rem;
 }
 
-.show_filters_input {
-    display: none;
-}
-
-.show_filters_label {
-    top: 9vh;
+.show_filters_button {
+    top: 9.5vh;
     position: absolute;
     align-self: flex-start;
-    margin-left: 1.2rem;
-    padding: 0.5rem;
+    margin-left: 1rem;
+    padding: 0.5rem 0.75rem 0.2rem 0.75rem;
     background-color: transparent;
     border: none;
     font-size: 1.35rem;
@@ -35,7 +31,7 @@
     transition: 300ms;
 }
 
-.show_filters_label:hover {
+.show_filters_button:hover {
     background-color: #E9EDC9;
     border-radius: 9999px;
 }
@@ -71,16 +67,16 @@
     grid-template-areas:
     "prev . . . . next"
     "prev . . . . next";
-    height:76%;
+    height:80%;
     align-items: center;
     justify-content: center;
 }
 
-.prev{
+.prev, .prev_empty {
     grid-area: prev;
 }
 
-.next {
+.next, .next_empty {
     grid-area: next;
 }
 

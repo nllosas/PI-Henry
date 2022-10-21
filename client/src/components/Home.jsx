@@ -2,8 +2,9 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import Card from './Card/Card';
-import Paginado from './Paginado';
+import Paginado from './Paginado/Paginado';
 import NavBar from './NavBar/NavBar';
+import Filters from './Filters/Filters';
 import style from './Home.module.css';
 import { IoFilterSharp } from 'react-icons/io5';
 import { GrPrevious, GrNext } from 'react-icons/gr';
@@ -30,7 +31,8 @@ function Home() {
 
     // Paginado
     const [currentPage, setCurrentPage] = useState(1);
-    const [breedsPerPage, setBreedsPerPage] = useState(8);
+    /* const [breedsPerPage, setBreedsPerPage] = useState(8); */
+    const breedsPerPage = 8;
     const indexOfLastBreed = currentPage * breedsPerPage;
     const indexOfFirstBreed = indexOfLastBreed - breedsPerPage;
     const currentBreeds = breedsLoaded.slice(indexOfFirstBreed, indexOfLastBreed);
@@ -49,7 +51,7 @@ function Home() {
     //
 
 
-    const handleClick = (event) => {
+    const handleResetFilters = (event) => {
         event.preventDefault();
         dispatch(getBreeds());
         setTemperFilterValue("All");
@@ -101,42 +103,24 @@ function Home() {
             <NavBar searchBar={true} paginado={paginado}/>
             <div className={style.header}>
                 <h1 className={style.title}>Dog Breeds</h1>
-                <input type="checkbox" id="showFilters" className={style.show_filters_input} onClick={handleFilterActivation}/>
-                <label for="showFilters" className={style.show_filters_label}><IoFilterSharp/></label>
+                <button className={style.show_filters_button} onClick={handleFilterActivation}><IoFilterSharp/></button>
             </div>
-            {showFilters && 
-            <div className={style.filters}>
-                <div className={style.filters_container}>
-                    <select onChange={e => handleAlphabeticalSort(e)} value={alphabeticalSortValue}>
-                        <option value="All">Order alphabetically</option>
-                        <option value="asc">A-Z</option>
-                        <option value="des">Z-A</option>
-                    </select>
-                    <select onChange={e => handleWeightSort(e)} value={weightSortValue}>
-                        <option value="All">Order by Avg Weight</option>
-                        <option value="lowHigh">Low to High</option>
-                        <option value="highLow">High to Low</option>
-                    </select>
-                    <select onChange={e => handleFilterTemper(e)} value={temperFilterValue}>
-                        <option value="All">Filter by temper</option>
-                        {
-                            temperaments?.map(temperament =>
-                                <option key={temperament.name +1} value={`${temperament.name}`}>{temperament.name}</option>
-                            )
-                        }
-                    </select>
-                    <select onChange={e => {handleFilterCreated(e)}} value={createdFilterValue}>
-                        <option value="All">Filtrar by Crated</option>
-                        <option value="created">Created</option>
-                        <option value="api">API</option>
-                    </select>
-                    <button onClick={e => {handleClick(e)}}>
-                        🔄
-                    </button>
-                </div>
-            </div>}
+            {<Filters 
+                                showFilters={showFilters}
+                                temperaments={temperaments}
+                                temperFilterValue={temperFilterValue}
+                                createdFilterValue={createdFilterValue}
+                                weightSortValue={weightSortValue}
+                                alphabeticalSortValue={alphabeticalSortValue}
+                                handleAlphabeticalSort={handleAlphabeticalSort}
+                                handleWeightSort={handleWeightSort}
+                                handleFilterTemper={handleFilterTemper}
+                                handleFilterCreated={handleFilterCreated}
+                                handleResetFilters={handleResetFilters}
+                            />
+            }
             <div className={style.cards}>
-                <button className={style.prev} onClick={handlePreviousPage}><GrPrevious className={style.prev}/></button>
+                {currentPage > 1 ? <button className={style.prev} onClick={handlePreviousPage}><GrPrevious className={style.prev}/></button> : <div className={style.prev_empty}/>}
                 {
                     breedsLoaded ? 
                         currentBreeds.length ? 
@@ -151,17 +135,17 @@ function Home() {
                             max_weight={e.max_weight}
                         />
                     ) :
-                    <h3>No hay razas</h3> :
+                    <h3>No breeds found</h3> :
                     <img src="https://static.wixstatic.com/media/e1d3bb_7740582dae514842bad1d41fc5910d52~mv2.gif" alt="loading" />
                 }
-                <button className={style.next} onClick={handleNextPage}><GrNext className={style.prev}/></button>
+                {currentPage < Math.ceil(breedsLoaded.length/breedsPerPage) ? <button className={style.next} onClick={handleNextPage}><GrNext className={style.prev}/></button> : <div className={style.next_empty}/>}
             </div>
             <div className={style.paginado_container}>
-                <p className={style.current_page}>Current Page: {currentPage}</p>
                 <Paginado
                     breedsPerPage={breedsPerPage}
                     breedsLoaded={breedsLoaded.length}
                     paginado={paginado}
+                    currentPage={currentPage}
                 />
             </div>
         </div>

@@ -1,67 +1,194 @@
 .bkg {
     position: absolute;
-    backdrop-filter: blur(16px);
-    top: 0;
+    background-color: #0000004d;
     bottom: 0;
-    left: 0;
-    right: 0;
-    width: 45vw;
-    height: 70vh;
+}
+
+.container {
     overflow: hidden;
-    margin: 15vh 20vw;
-    border-radius: 1rem;
-    display: flex;
+    height: 70vh;
+    width: 35vw;
+    margin: 15vh 32.5vw;
+    border-radius: 0.5rem;
+    display: grid;
     justify-content: center;
-    z-index: 1;
 }
 
 .bkg_img {
-    height: 100%;
-    width: 100%;
-    z-index: 1;
+    height: 70vh;
+    width: 35vw;
 }
 
 .filter {
     position: absolute;
     backdrop-filter: blur(16px);
     width: 100%;
-    height: 100%;
     top: 0;
-    z-index: 1;
+    bottom: 0;
+    left: 0;
 }
 
-.container {
+.details {
     position: absolute;
-    top: 0;
-    overflow: hidden;
     height: 70vh;
-    width: 70vw;
-    background-color: #ffffff25;
+    width: 35vw;
+    background-color: #fefae04d;
     z-index: 2;
-    /* margin: 15vh 15vw; */
-    border-radius: 0.5rem;
-    display: grid;
-    justify-content: center;
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 0.1fr 1fr 1.5fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1.5fr; 
+    gap: 0; 
+    grid-template-areas: 
+        "close name name temperaments"
+        ". image image temperaments"
+        ". image image temperaments"
+        ". more_info more_info temperaments";
 }
 
-h2, h4 {
-    margin: 0 auto;
+.details_noTempers {
+    position: absolute;
+    height: 70vh;
+    width: 35vw;
+    background-color: #fefae04d;
+    z-index: 2;
+    justify-content: center;
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 0.1fr 1fr 1.5fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1.5fr; 
+    gap: 0; 
+    grid-template-areas: 
+        "close name name name"
+        ". image image image"
+        ". image image image"
+        ". more_info more_info more_info";
+}
+
+.name {
+    grid-area: name;
+    align-self: center;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px #F5DEB3;
+    justify-self: center;
+    backdrop-filter: contrast(0.6);
+    padding: 0.5rem;
+    margin: 3rem 0 0 0;
 }
 
 .breed_img {
-    width: 20vw;
-    height: auto;
+    grid-area: image;
+    justify-self: center;
+}
+
+.breed_img img {
+    grid-area: image;
+    margin: 2rem 0;
+    height: 16rem;
+    max-width: 25rem;
+    border-radius: 0.5rem;
+    justify-self: center;
+}
+
+.temperaments {
+    margin: auto 3rem;
+    height: fit-content;
+    grid-area: temperaments;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: contrast(0.5);
+    padding: 1.5rem 1.5rem;
     border-radius: 1rem;
 }
+
+.no_temperaments {
+    display: none;
+}
+
+.temperaments li {
+    list-style: none;
+    font-size: 1.2rem;
+    color: #FEFAE0;
+    font-weight: 600;
+    text-align: center;
+}
+
+.more_info {
+    grid-area: more_info;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 1.5rem;
+    color: #FEFAE0;
+    backdrop-filter: contrast(0.4);
+    height: fit-content;
+    justify-content: center;
+    justify-self: center;
+    margin-top: 2.9rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: 1rem;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.weight, .height {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    column-gap: 7px;
+}
+
+.weight_icon {
+    font-size: 1.9rem;
+}
+
+.height_icon {
+    height: 1.9rem;
+    width: auto;
+}
+
+.life_span {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.close_button_container {
+    pointer-events: none;
+}
+
+.close_button {
+    grid-area: close;
+    background-color: #99765410;
+    color: #FEFAE0;
+    border: none;
+    font-size: 1.5rem;
+    padding: 0.5rem 0.5rem 0.2rem 0.5rem;
+    transition: 300ms;
+    border-radius: 3px;
+}
+
+.close_button:hover {
+    cursor: pointer;
+    background-color: #bdac9a3b;
+    color: #ff0000;
+}
+
 
 
 
 
 .loading_screen {
-    width: 45vw;
+    top:0;
     height: 70vh;
-    margin: 15vh 20vw;
-    background-color: #6A516A;
+    width: 45vw;
+    margin: 15vh 27.5vw;
+    border-radius: 2rem;
     overflow: hidden;
     position: absolute;
     z-index: 1;

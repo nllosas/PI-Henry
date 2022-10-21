@@ -19,10 +19,18 @@ function Card({id, name, image, tempers, min_weight, max_weight}) {
             </ul>
           </div>
           <div className={style.card_img}>
-            <img src={image} alt="img not found"/>
+            <img src={image ? image : "https://tinyurl.com/4e893cj9"} alt="img not found"/>
           </div>
           <h3 className={style.name}>{name}</h3>
-          <h5 className={style.weight}><GiWeight/>Weight: {min_weight} - {max_weight} kg</h5>
+          { 
+            ((isNaN(min_weight) || !min_weight) && (isNaN(max_weight) || !max_weight)) ?
+              '' :
+              (isNaN(min_weight) || !min_weight) ?
+              <h5 className={style.weight}><GiWeight className={style.weight_icon}/>{max_weight} kg</h5> :
+              (isNaN(max_weight) || !max_weight) ?
+                <h5 className={style.weight}><GiWeight className={style.weight_icon}/>{min_weight} kg</h5> :
+              <h5 className={style.weight}><GiWeight className={style.weight_icon}/> {min_weight} - {max_weight} kg</h5>
+          }
       </div>
     </Link>
   )
