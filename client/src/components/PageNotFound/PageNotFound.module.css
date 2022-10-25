@@ -1,0 +1,33 @@
+.body {
+    background-color: #FEFAE0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+}
+
+.main_container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: 87.9vh;
+    width: 100%;
+    align-items: center;
+    row-gap: 5rem;
+    justify-content: space-between;
+}
+
+.title {
+    font-family: 'Chicle', cursive;
+    font-size: 10em;
+    color: #D4A373;
+}
+
+.not_found_image {
+    background-image: url('https://www.seekpng.com/png/full/360-3605845_dog-holding-paper-in-mouth.png');
+    background-repeat: no-repeat;
+    width: 27vw;
+    height: 57vh;
+}
+
