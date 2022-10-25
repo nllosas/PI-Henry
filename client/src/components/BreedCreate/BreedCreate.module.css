@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap');
+
 .body {
     background-color: #FEFAE0;
     top: 0;
@@ -8,12 +10,207 @@
     width: 100vw;
 }
 
+.form_container {
+    background-color: #FAEDCD;
+    margin: 4rem;
+    width: 70vw;
+    height: 80vh;
+    margin:  2rem auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 1rem;
+    box-shadow: 12px 12px 28px -17px rgba(0,0,0,0.57);
+}
+
+.image_preview {
+    width: 30vw;
+    height: auto;
+    overflow: hidden;
+    margin: 1.5rem 0 1.5rem 1.5rem;
+    border-radius: 1rem;
+}
+
 .form {
     display: flex;
     flex-direction: column;
-    align-self: center;
+    align-items: flex-start;
+    row-gap: 0.75rem;
+    margin: 6rem 4rem;
+}
+
+.title {
+    font-size: 1.3em;
+    align-self: flex-start;
+    margin: 0;
+    font-family: 'Chicle', cursive;
+    color: #D4A373;
+    font-size: 2em;
+}
+
+.form_containers_single {
+    display: flex;
+    flex-direction: column;
+    font-family:sans-serif;
+    font-size: 0.75em;
+    font-weight: 600;
+    color: #727272;
+    row-gap: 0.5em;
+}
+
+.form_containers_single input {
+    font-weight: 700;
+    font-family: 'Manrope', sans-serif;
+    padding: 9px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    width: 21.75rem;
+    border: 2px solid transparent;
+}
+
+.form_containers_single input:focus {
+    border: 2px solid #D4A373;
+}
+
+.error_message {
+    margin: 0;
+    color: #d82929;
+    align-self: flex-start;
+    font-family: sans-serif;
+    font-size: 0.75em;
+    font-weight: 600;
+}
+
+.form_containers {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 3fr; 
+    gap: 0.5em 1em; 
+    grid-template-areas: 
+    "label_name label_name"
+    "min max"; 
+    font-family:sans-serif;
+    font-size: 0.75em;
+    font-weight: 600;
+    color: #727272;
+}
+
+.form_containers label {
+    grid-area: label_name;
+}
+
+.form_containers_inputs {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.form_containers_inputs label{
+    font-size: 0.75em;
+}
+
+.form_containers_inputs input{
+    font-weight: 700;
+    font-family: 'Manrope', sans-serif;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    width: 10rem;
+    border: 2px solid transparent;
+}
+
+.form_temperaments_container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
+    width: 15rem;
+}
+
+.form_temperaments_container label {
+    font-family:sans-serif;
+    font-size: 0.80em;
+    font-weight: 600;
+    color: #727272;
+}
+
+.form_temperaments_container select {
+    border: none;
+    font-size: 1em;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    border-radius: 3px;
+}
+
+.form_temperaments_container option:hover {
+    cursor: pointer;
+}
+
+.form_temperaments_selected_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 30rem;
+    gap: 3px 3px;
+    overflow-y: scroll;
+    max-height: 4.5rem;
+}
+
+.form_temperaments_selected_container::-webkit-scrollbar {
+    width: 16px;
+}
+
+.form_temperaments_selected_container::-webkit-scrollbar-thumb {
+    background-color: #D4A373;
+    border-radius: 10px;
+    border: 3px solid #FAEDCD;
+}
+
+.form_temperaments_selected_container::-webkit-scrollbar-track {
+    background-color: #FAEDCD;
+}
+
+.temperaments_selected {
+    background-color: #CCD5AE;
+    color: #000000;
+    display: flex;
+    flex-direction: row;
+    max-height: 1.5em;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.75em;
     align-items: center;
-    justify-self: center;
-    justify-content: center;
-    row-gap: 1rem;
+}
+
+.temperaments_selected p{
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    padding: 2px;
+}
+
+.temperaments_selected button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.submit_button {
+    margin-top: 1rem;
+    background-color: #D4A373;
+    border: none;
+    padding: 1em;
+    border-radius: 3px;
+    font-family: 'Manrope', sans-serif;
+    text-transform: uppercase;
+    color: #FAEDCD;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.submit_button:hover {
+    background-color: #CCD5AE;
 }

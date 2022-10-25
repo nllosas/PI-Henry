@@ -81,7 +81,7 @@
 }
 
 .prev, .next {
-    background-color: transparent;
+    background: none;
     border: none;
     font-size: 1.35rem;
     color: #D4A373;

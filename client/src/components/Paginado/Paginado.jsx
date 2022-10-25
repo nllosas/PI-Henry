@@ -13,7 +13,7 @@ function Paginado({breedsPerPage, breedsLoaded, paginado, currentPage}) {
         <ul className={style.paginado}>
             {
                 pageNumbers && pageNumbers.map(number => (
-                    <li key={Math.random()}>
+                    <li key={number + 'paginado' + Math.random()}>
                         <button onClick={() => paginado(number)} className={number === currentPage ? style.currentPageStyle : style.notCurrentPageStyle}>{number}</button>
                     </li>
                 

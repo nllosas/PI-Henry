@@ -33,7 +33,7 @@ function Filters({
                     <option value="All" className={style.all}>Filter by temper</option>
                     {
                         temperaments?.map(temperament =>
-                            <option key={temperament.name +1} value={`${temperament.name}`}>{temperament.name}</option>
+                            <option key={temperament.name +'filter' + Math.random()} value={`${temperament.name}`}>{temperament.name}</option>
                         )
                     }
                 </select>
