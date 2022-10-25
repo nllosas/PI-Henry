@@ -7,7 +7,6 @@ import style from './Detail.module.css';
 import { CgCloseR } from 'react-icons/cg';
 import { GiWeight } from 'react-icons/gi';
 import dogHeightIcon from '../../assets/dog-height.svg';
-import SearchFailed from '../SearchFailed/SearchFailed';
 
 function Detail(props) {
 
