@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getBreedsByName } from '../../actions';
+import { clearError, getBreedsByName } from '../../actions';
 import style from './SearchBar.module.css';
 import { BsSearch } from 'react-icons/bs';
 
@@ -18,6 +18,7 @@ function SearchBar({paginado}) {
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch(getBreedsByName(searchValue))
+        dispatch(clearError())
         setSearchValue('');
         paginado(1);
     }

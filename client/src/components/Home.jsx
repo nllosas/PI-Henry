@@ -16,6 +16,7 @@ import {
     sortBreedsByWeight,
     sortBreedsAlphabetically,
 } from '../actions';
+import SearchFailed from './SearchFailed/SearchFailed';
 
 function Home() {
 
@@ -28,6 +29,7 @@ function Home() {
     
     const breedsLoaded = useSelector((state) => state.breedsLoaded);
     const temperaments = useSelector((state) => state.temperaments);
+    const errors = useSelector((state) => state.errors);
 
     // Paginado
     const [currentPage, setCurrentPage] = useState(1);
@@ -120,8 +122,9 @@ function Home() {
                             />
             }
             <div className={style.cards}>
-                {currentPage > 1 ? <button className={style.prev} onClick={handlePreviousPage}><GrPrevious className={style.prev}/></button> : <div className={style.prev_empty}/>}
+                {(currentPage > 1 && !errors.message) ? <button className={style.prev} onClick={handlePreviousPage}><GrPrevious className={style.prev}/></button> : <div className={style.prev_empty}/>}
                 {
+                    errors.message ? <SearchFailed /> :
                     breedsLoaded ? 
                         currentBreeds.length ? 
                         currentBreeds.map(e => 
@@ -136,18 +139,18 @@ function Home() {
                         />
                     ) :
                     <h3>No breeds found</h3> :
-                    <img src="https://static.wixstatic.com/media/e1d3bb_7740582dae514842bad1d41fc5910d52~mv2.gif" alt="loading" />
+                    <img src="https://ai-hmi.com/wp-content/plugins/preloader-sws/assets/img/bg-true/fox-fun-walk.gif" alt="loading gif" className={style.loading_img} />
                 }
-                {currentPage < Math.ceil(breedsLoaded.length/breedsPerPage) ? <button className={style.next} onClick={handleNextPage}><GrNext className={style.prev}/></button> : <div className={style.next_empty}/>}
+                {(currentPage < Math.ceil(breedsLoaded.length/breedsPerPage) && !errors.message) ? <button className={style.next} onClick={handleNextPage}><GrNext className={style.prev}/></button> : <div className={style.next_empty}/>}
             </div>
-            <div className={style.paginado_container}>
+            {!errors.message && <div className={style.paginado_container}>
                 <Paginado
                     breedsPerPage={breedsPerPage}
                     breedsLoaded={breedsLoaded.length}
                     paginado={paginado}
                     currentPage={currentPage}
                 />
-            </div>
+            </div>}
         </div>
     )
 }

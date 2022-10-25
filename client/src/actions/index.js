@@ -3,6 +3,7 @@ import axios from 'axios';
 export const GET_BREEDS = 'GET_BREEDS';
 export const GET_BREED_DETAIL = 'GET_BREED_DETAIL';
 export const GET_BREEDS_BY_NAME = 'GET_BREEDS_BY_NAME';
+export const SEARCH_FAILED = 'SEARCH_FAILED';
 export const GET_TEMPERAMENTS = 'GET_TEMPERAMENTS';
 export const POST_BREED = 'POST_BREED';
 export const FILTER_BY_TEMPERAMENT = 'FILTER_BY_TEMPERAMENT';
@@ -10,6 +11,7 @@ export const FILTER_BY_CREATED = 'FILTER_BY_CREATED';
 export const SORT_BY_WEIGHT = 'SORT_BY_WEIGHT';
 export const SORT_ALPHABETICALLY = 'SORT_ALPHABETICALLY';
 export const CLEAR_DETAIL = 'CLEAR_DETAIL';
+export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 export const getBreeds = () => {
     return async function(dispatch) {
@@ -27,7 +29,7 @@ export const getBreedDetail = (breedId) => {
             var json = await axios.get(`http://localhost:3001/dogs/${breedId}`);
             return dispatch({ type: GET_BREED_DETAIL, payload: json.data });
         } catch (error) {
-            console.log(error);
+            return dispatch( {type: SEARCH_FAILED, payload: error})
         }
     };
 };
@@ -38,7 +40,8 @@ export const getBreedsByName = (name) => {
             var json = await axios.get(`http://localhost:3001/dogs?name=${name}`);
             return dispatch({ type: GET_BREEDS_BY_NAME, payload: json.data }); 
         } catch (error) {
-            console.log(error.message);
+            return dispatch( {type: SEARCH_FAILED, payload: error})
+            /* console.log(error.message); */
         }
     };
 };
@@ -99,3 +102,10 @@ export const clearDetail = () => {
         payload: {}
     }
 };
+
+export const clearError = () => {
+    return {
+        type: CLEAR_ERROR,
+        payload: {}
+    }
+}

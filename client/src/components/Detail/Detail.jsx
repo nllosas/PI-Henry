@@ -7,11 +7,13 @@ import style from './Detail.module.css';
 import { CgCloseR } from 'react-icons/cg';
 import { GiWeight } from 'react-icons/gi';
 import dogHeightIcon from '../../assets/dog-height.svg';
+import SearchFailed from '../SearchFailed/SearchFailed';
 
 function Detail(props) {
 
     const dispatch = useDispatch();
     var details = useSelector((state) => state.breedDetail);
+    var errors = useSelector((state) => state.errors);
     
     const { id } = useParams();
     
@@ -73,7 +75,7 @@ function Detail(props) {
             </div>
         </div>
          : 
-        <div className={style.loading_screen}>
+        !errors.message && <div className={style.loading_screen}>
             <img src="https://ai-hmi.com/wp-content/plugins/preloader-sws/assets/img/bg-true/fox-fun-walk.gif" alt="loading gif" className={style.loading_img} />
         </div>
     )

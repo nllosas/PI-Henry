@@ -105,4 +105,12 @@
 .current_page {
     margin: 0;
 }
+
+.cards img {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    justify-content: center;
+}
+
   

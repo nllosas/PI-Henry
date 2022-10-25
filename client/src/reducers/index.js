@@ -2,6 +2,7 @@ import {
     GET_BREEDS,
     GET_BREED_DETAIL,
     GET_BREEDS_BY_NAME,
+    SEARCH_FAILED,
     GET_TEMPERAMENTS,
     POST_BREED,
     FILTER_BY_TEMPERAMENT,
@@ -9,6 +10,7 @@ import {
     SORT_ALPHABETICALLY,
     SORT_BY_WEIGHT,
     CLEAR_DETAIL,
+    CLEAR_ERROR,
 } from '../actions/index.js';
 
 const initialState = {
@@ -107,6 +109,16 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 breedDetail: action.payload
+            }
+        case SEARCH_FAILED:
+            return {
+                ...state,
+                errors: action.payload
+            }
+        case CLEAR_ERROR:
+            return {
+                ...state,
+                errors: action.payload
             }
         default:
             return {...state};
