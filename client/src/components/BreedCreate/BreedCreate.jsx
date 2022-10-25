@@ -101,7 +101,7 @@ export default function BreedCreate() {
                 img: "",
                 temperaments: []
             });
-            /* history.push('/home') */
+            history.push('/home')
         }
     }
 
