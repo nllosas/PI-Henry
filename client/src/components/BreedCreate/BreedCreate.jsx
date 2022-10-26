@@ -88,7 +88,7 @@ export default function BreedCreate() {
                 ...input,
             }));
         } else {
-            if (input.img === "") input.img = null;
+            if (input.img === "") delete input.img;
             dispatch(postBreed(input));
             alert('Breed added')
             setInput({
