@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import store from "./store";
 import axios from 'axios';
 
-axios.defaults.baseURL = process.env.REACT_APP_API || 'https://henry-deploy-pi.herokuapp.com';
+axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001';
 
 ReactDOM.render(
   <Provider store={store}>

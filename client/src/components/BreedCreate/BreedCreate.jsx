@@ -9,6 +9,7 @@ export default function BreedCreate() {
     const dispatch = useDispatch();
     const history = useHistory();
     const temperaments = useSelector((state) => state.temperaments);
+    const allBreeds = useSelector((state) => state.allBreeds);
 
     const [input, setInput] = useState({
         name: "",
@@ -54,6 +55,7 @@ export default function BreedCreate() {
         
         setErrors(validate({
             ...input,
+            breeds: allBreeds,
             [event.target.name]: event.target.value
         }));
     };
@@ -193,6 +195,7 @@ export default function BreedCreate() {
 export function validate(input) {
     let errors = {};
     if (!input.name) errors.name = 'name required';
+    else if(input.breeds.find(breed => breed.name.toLowerCase() === input.name.toLowerCase())) errors.name = 'breed already created';
     else if (!/^[A-Za-z ,.'-]+$/.test(input.name)) errors.name = 'invalid name';
     else delete errors.name;
 
