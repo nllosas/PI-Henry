@@ -18,7 +18,7 @@ export default function BreedCreate() {
         max_weight: "",
         min_life_span: null,
         max_life_span: null,
-        img: null,
+        img: "",
         temperaments: []
     });
 
@@ -88,6 +88,7 @@ export default function BreedCreate() {
                 ...input,
             }));
         } else {
+            if (input.img === "") input.img = null;
             dispatch(postBreed(input));
             alert('Breed added')
             setInput({
@@ -112,7 +113,7 @@ export default function BreedCreate() {
             <NavBar searchBar={false} />
             <div className={style.form_container}>
                 <div className={style.image_preview} onChange={(e) => handleInputChange(e)}>
-                    <img src={(errors.img || !input.img || !input.img.length) ? placeHolderImg : input.img} alt='Not found' width='100%' height='100%'/>
+                    <img src={(errors.img || !input.img.length) ? placeHolderImg : input.img} alt='Not found' width='100%' height='100%'/>
                 </div>
                 <form onSubmit={(e) => handleSubmit(e)} className={style.form}>
                     <span className={style.title}>New Breed</span>
