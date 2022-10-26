@@ -15,7 +15,7 @@ export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 export const getBreeds = () => {
     return async function(dispatch) {
-        var json = await axios.get(`http://localhost:3001/dogs`);
+        var json = await axios.get(`/dogs`);
         return dispatch({ type: GET_BREEDS, payload: json.data })
         // fetch(`http://localhost:3001/dogs`)
         // .then(response => response.json())
@@ -26,7 +26,7 @@ export const getBreeds = () => {
 export const getBreedDetail = (breedId) => {
     return async function(dispatch) {
         try {
-            var json = await axios.get(`http://localhost:3001/dogs/${breedId}`);
+            var json = await axios.get(`/dogs/${breedId}`);
             return dispatch({ type: GET_BREED_DETAIL, payload: json.data });
         } catch (error) {
             return dispatch( {type: SEARCH_FAILED, payload: error})
@@ -37,7 +37,7 @@ export const getBreedDetail = (breedId) => {
 export const getBreedsByName = (name) => {
     return async function(dispatch) {
         try {
-            var json = await axios.get(`http://localhost:3001/dogs?name=${name}`);
+            var json = await axios.get(`/dogs?name=${name}`);
             return dispatch({ type: GET_BREEDS_BY_NAME, payload: json.data }); 
         } catch (error) {
             return dispatch( {type: SEARCH_FAILED, payload: error})
@@ -49,7 +49,7 @@ export const getBreedsByName = (name) => {
 export const getTemperaments = () => {
     return async function(dispatch) {
         try {
-            var json = await axios.get('http://localhost:3001/temperaments');
+            var json = await axios.get('/temperaments');
             return dispatch({ type: GET_TEMPERAMENTS, payload: json.data })
         } catch (error) {
             console.log(error.message);
@@ -60,7 +60,7 @@ export const getTemperaments = () => {
 export const postBreed = (payload) => {
     return async function(dispatch) {
         try {
-            const response = await axios.post('http://localhost:3001/dogs', payload);
+            const response = await axios.post('/dogs', payload);
             return response;
         } catch (error) {
             console.log(error.message);
