@@ -18,7 +18,7 @@ export default function BreedCreate() {
         max_weight: "",
         min_life_span: null,
         max_life_span: null,
-        img: "",
+        img: null,
         temperaments: []
     });
 
@@ -96,9 +96,9 @@ export default function BreedCreate() {
                 max_height: "",
                 min_weight: "",
                 max_weight: "",
-                min_life_span: "",
-                max_life_span: "",
-                img: "",
+                min_life_span: null,
+                max_life_span: null,
+                img: null,
                 temperaments: []
             });
             history.push('/home')
