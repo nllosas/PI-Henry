@@ -198,15 +198,18 @@ export function validate(input) {
     if (!input.min_height || !input.max_height) errors.height = 'missing height information';
     else if (input.min_height <= 0 || input.max_height <= 0) errors.height = 'height cannot be less than or equal to zero';
     else if (input.min_height > input.max_height) errors.height = 'minimum height must be less than maximum height';
+    else if (input.max_height > 500) errors.height = 'maximum height exceeded';
     else delete errors.height;
 
     if (!input.min_weight || !input.max_weight) errors.weight = 'missing weight information';
     else if (input.min_weight <= 0 || input.max_weight <= 0) errors.weight = 'weight cannot be less than or equal to zero';
     else if (input.min_height > input.max_height) errors.weight = 'minimum weight must be less than maximum weight';
+    else if (input.max_weight > 200) errors.weight = 'maximum weight exceeded';
     else delete errors.weight;
 
     if ( (input.min_life_span && input.min_life_span < 1) || (input.max_life_span && input.max_life_span < 1) ) errors.life_span = 'life span cannot be less than or equal to zero';
     else if (input.min_life_span > input.max_life_span) errors.life_span = 'minimum life span must be less than maximum life span';
+    else if (input.max_life_span > 99) errors.life_span = 'maximum life span exceeded';
     else delete errors.life_span;
 
     if (!/^(ftp|http|https):\/\/[^ "]+$/.test(input.img) && input.img !== '') errors.img = 'invalid link';

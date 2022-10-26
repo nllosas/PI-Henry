@@ -54,7 +54,7 @@
     backdrop-filter: blur(16px);
     margin: 0;
     padding: 2rem;
-    list-style: georgian inside url('../../assets/dogPaw-02.svg');
+    list-style: georgian inside url('../../assets/dogPaw-02.svg') none;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
