@@ -18,7 +18,7 @@ const cargarDatos = async () => {
     });
 }
 
-cargarDatos();
+//cargarDatos();
 
 router.get('/', async (req, res) => {
     try {
